@@ -1,10 +1,9 @@
 import openai
 import os
 
-# os.environ["OPEN_API_KEY"] = "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"
 
 # Initialize the OpenAI API client
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Example of calling the GPT-3 API
 response = openai.Completion.create(

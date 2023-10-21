@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 import openai
 import requests
+import os
 
 app = Flask(__name__)
 
@@ -51,12 +52,12 @@ def form4():
 
 @app.route('/openai', methods=['POST'])
 def gpt_call():
-    openai.api_key = "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"
+    openai.api_key = os.getenv("OPENAI_API_KEY")
 
     # Example of calling the GPT-3 API
     response = openai.Completion.create(
         engine="gpt-3.5-turbo-instruct",
-        prompt=requests.json.get('prompt'),
+        prompt=request.json.get('prompt'),
         max_tokens = 3500
     )
 
