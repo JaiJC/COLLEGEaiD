@@ -1,10 +1,27 @@
 from flask import Flask, request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 import openai
-import requests
 import os
+from pymongo import MongoClient
+from pymongo.server_api import ServerApi
+from urllib.parse import quote_plus
+import json
+from bson import json_util
 
 app = Flask(__name__)
+
+username = os.getenv("MONGO_USERNAME")
+password = os.getenv("MONGO_PASSWORD")
+
+username = quote_plus(username)
+password = quote_plus(password)
+
+connection_string = f"mongodb+srv://{username}:{password}@hh23.oxb5jub.mongodb.net/?retryWrites=true&w=majority"
+
+client = MongoClient(connection_string, server_api=ServerApi('1'))
+
+db = client['hh23']
+collection = db['AIvisor']
 
 users = {}
 form_data = {}
@@ -32,23 +49,33 @@ def login():
 
 @app.route('/form1', methods=['POST'])
 def form1():
-    form_data['form1'] = request.form.to_dict()
+    collection.insert_one(request.form.to_dict())
     return jsonify({'message': 'Form 1 data stored successfully'}), 200
 
 @app.route('/form2', methods=['POST'])
 def form2():
-    form_data['form2'] = request.form.to_dict()
+    collection.insert_one(request.form.to_dict())
     return jsonify({'message': 'Form 2 data stored successfully'}), 200
 
 @app.route('/form3', methods=['POST'])
 def form3():
-    form_data['form3'] = request.form.to_dict()
+    collection.insert_one(request.form.to_dict())
     return jsonify({'message': 'Form 3 data stored successfully'}), 200
 
 @app.route('/form4', methods=['POST'])
 def form4():
-    form_data['form4'] = request.form.to_dict()
+    collection.insert_one(request.form.to_dict())
     return jsonify({'message': 'Form 4 data stored successfully'}), 200
+
+@app.route('/read-mongo', methods=['GET'])
+def read_mongodb():
+    csv_files = collection.find()
+    dfs = {}
+    for file in csv_files:
+        del file['_id']
+        dfs |= file
+
+    return jsonify(dfs), 200
 
 @app.route('/openai', methods=['POST'])
 def gpt_call():
