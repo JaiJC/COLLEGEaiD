@@ -1,4 +1,6 @@
-/* LoginPage.css */
+
+
+/* Main container for the login page */
 .login-page {
     display: flex;
     flex-direction: column;
@@ -8,6 +10,7 @@
     background-color: #f0f0f0;
   }
   
+  /* Login form container */
   .login-form {
     background-color: white;
     padding: 20px;
@@ -17,6 +20,7 @@
     text-align: center;
   }
   
+  /* Input fields */
   .login-input {
     width: 100%;
     padding: 10px;
@@ -25,6 +29,7 @@
     border-radius: 4px;
   }
   
+  /* Login button */
   .login-button {
     background-color: #007bff;
     color: white;
@@ -34,7 +39,185 @@
     cursor: pointer;
   }
   
+  /* Hover effect for the login button */
   .login-button:hover {
     background-color: #0056b3;
   }
+  
+  /* Rounded button style */
+  .round-button {
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 50%; /* Makes the button round */
+    padding: 10px 20px; /* Adjust padding as needed */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px; /* Add margin to separate buttons */
+    cursor: pointer;
+  }
+
+  .Login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .logo-container {
+    margin-right: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .wider-input {
+    width: 150%; 
+  }
+  /* Base styles */
+.bg-white {
+  background-color: #fff;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.pt-6 {
+  padding-top: 1.5rem;
+}
+
+.pb-8 {
+  padding-bottom: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.block {
+  display: block;
+}
+
+.text-gray-700 {
+  color: #4a5568;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+/* Input styles */
+.shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.appearance-none {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.border {
+  border-width: 1px;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.leading-tight {
+  line-height: 1.25;
+}
+
+.focus\:outline-none:focus {
+  outline: none;
+}
+
+.focus\:shadow-outline:focus {
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+/* Button styles */
+.bg-blue-500 {
+  background-color: #0073e6;
+}
+
+.hover\:bg-blue-700:hover {
+  background-color: #1854b1;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+/* Paragraph and copyright styles */
+.text-center {
+  text-align: center;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+
+
+  
+
+  
   
