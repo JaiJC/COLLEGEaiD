@@ -10,6 +10,7 @@ import json
 import logging
 from waitress import serve
 from flask_cors import CORS
+import requests
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.DEBUG)
@@ -29,8 +30,9 @@ client = MongoClient(connection_string, tlsCAFile=certifi.where(), tlsAllowInval
 db = client['hh23']
 collection = db['AIvisor']
 
+localhost = "http://0.0.0.0:8080"
+
 users = {}
-form_data = {}
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -76,12 +78,18 @@ def form4():
 @app.route('/read-mongo', methods=['GET'])
 def read_mongodb():
     csv_files = collection.find()
-    dfs = {}
+    dfs={}
     for file in csv_files:
         del file['_id']
         dfs |= file
 
     return jsonify(dfs), 200
+
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+    data = requests.get('http://localhost/read-mongodb')
+
+    return jsonify({'message': f'{data.status_code}'}), 200
 
 @app.route('/clear', methods=['DELETE'])
 def clear_mongodb():
@@ -91,15 +99,21 @@ def clear_mongodb():
 @app.route('/openai', methods=['POST'])
 def gpt_call():
     openai.api_key = os.getenv("OPENAI_API_KEY")
+    csv_files = collection.find()
+    dfs={}
+    for file in csv_files:
+        del file['_id']
+        dfs |= file
 
     # Example of calling the GPT-3 API
     response = openai.Completion.create(
         engine="gpt-3.5-turbo-instruct",
-        prompt=request.json.get('prompt'),
+        prompt="Generate a list of 10 colleges that I can get into with the below specifications along with explanations of how I can get into each college" + str(dfs),
         max_tokens = 3500
     )
 
     output = response.choices[0].text
+    collection.delete_many({})
     return jsonify({'output': output}), 200
 
 if __name__ == '__main__':
