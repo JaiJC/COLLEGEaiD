@@ -1,6 +1,6 @@
 # COLLEGEaiD :robot::mortar_board:
 
-[https://github.com/rohan-sonthalia/AIvisor/issues/5#issue-1955867713]
+<img src="https://jenkins.io/sites/default/files/jenkins_logo.png"/>
 
 **Your Personal AI College Counsellor**
 
