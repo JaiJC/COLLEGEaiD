@@ -1,6 +1,6 @@
 # COLLEGEaiD :robot::mortar_board:
 
-![COLLEGEaiD Logo](https://link_to_logo_image.png)
+![COLLEGEaiD Logo]
 
 **Your Personal AI College Counsellor**
 
@@ -9,22 +9,13 @@
 ### Table of Contents
 
 - [Overview](#overview)
-- [Features](#features)
-- [Quick Start](#quick-start)
-- [Technology Stack](#technology-stack)
-- [Demo & Screenshots](#demo--screenshots)
+-- [Quick Start](#quick-start)
 - [How COLLEGEaiD Works](#how-collegeaid-works)
-- [Contribute](#contribute)
-- [License](#license)
-- [Contact](#contact)
-
 ---
 
 ### Overview
 
-**COLLEGEaiD** is an AI-powered platform designed to simplify the college selection process for students...
-
----
+**COLLEGEaiD** is an AI-powered platform designed to simplify the college selection process for students.
 
 ### Features
 
@@ -33,63 +24,20 @@
 - **Secure & Private:** We prioritize your privacy. Your data is safe and never shared.
 - **Feedback Mechanism:** Rate the recommendations to help improve the AI over time.
 
----
-
-### Quick Start
-
-1. Clone the repository:
-
-    ```bash
-    git clone https://github.com/your_username/COLLEGEaiD.git
-    ```
-
-2. Navigate to the project directory:
-
-    ```bash
-    cd COLLEGEaiD
-    ```
-
-3. Install required dependencies:
-
-    ```bash
-    npm install
-    ```
-
-4. Run the application:
-
-    ```bash
-    npm start
-    ```
-
----
 
 ### Technology Stack
 
-- **Frontend:** React, Redux
-- **Backend:** Node.js, Express.js
+- **Frontend:** React, TypeScript
+- **Backend:** Python, MongoDB
 ...
-
----
-
-### Demo & Screenshots...
 
 ---
 
 ### How COLLEGEaiD Works...
 
----
+The user registers, or signs into the account if an account is already created. The user is asked a series of questions ranging from their personality traits, academic information, finances, and others. On the basis of this, our AI recommends a set of Colleges best suited for students. 
 
-### Contribute...
-
----
-
-### License...
-
----
-
-### Contact...
-
----
+This effectively gives universal access to information related to college planning and eases the process of college applications. Bridging the gap for people who can't afford expensive College Counsellors, this program effectively helps people through their over-strenuous planning for further studies
 
 <p align="center">
   &copy; 2023 COLLEGEaiD. All Rights Reserved.
