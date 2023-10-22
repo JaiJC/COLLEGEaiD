@@ -1,6 +1,6 @@
 # COLLEGEaiD :robot::mortar_board:
 
-<img src="[https://github.com/rohan-sonthalia/AIvisor/blob/rohan/backend/Logo5.png]"/>
+<img src="[[https://github.com/rohan-sonthalia/AIvisor/blob/rohan/backend/Logo5.png](https://github.com/rohan-sonthalia/AIvisor/blob/rohan/backend/Logo5.png)]"/>
 
 **Your Personal AI College Counsellor**
 
