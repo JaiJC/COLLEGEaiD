@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "./LoginPage.css";
-import aiviLogo from '/Users/rohansonthalia/Documents/AIvisor/src/frontend/aivi.png'; // Import the Aivi logo
+import logo from '/Users/harish/AIvisor/src/frontend/collegeAid.png';
 
 export default function Login() {
   const navigate = useNavigate(); // Get the navigate function
@@ -52,7 +52,7 @@ export default function Login() {
 
   return (
     <div className="Login">
-      <img src={aiviLogo} alt="Aivi Logo" className="aivi-logo" />
+      <img src={logo} alt="Logo" className="logo" />
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>

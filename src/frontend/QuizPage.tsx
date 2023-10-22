@@ -1,11 +1,15 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
+import '/Users/harish/AIvisor/src/frontend/LoginPage.css';
+
 
 interface InputCategories {
   [key: string]: string[];
 }
 
 const QuizPage = () => {
+  const navigate = useNavigate();
   const inputs: InputCategories = {
     Biographical: ["Ethnicity", "Gender", "Age", "Demographic", "Annual Family Income", "Will be requiring aid, (Y/N)"],
     Personality: ["How would you describe yourself in one word", "On a scale of one to ten, how much would you say you are a social person", "On a scale of one to ten, how confident do you think you are in dealing with high levels of stress and performance pressure", "In a sentence or two, how would you describe your ideal college experience. (Don't stress! Not an essay)", "What do you think constitutes as fun?", "The Greatest Weekend Plan is: "],
@@ -39,6 +43,18 @@ const QuizPage = () => {
     }));
   };
 
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+
+  const handleToggleCategory = (category: string) => {
+    if (activeCategory === category) {
+      setActiveCategory(null); // If the clicked category is already active, collapse it
+    } else {
+      setActiveCategory(category); // Otherwise, set the clicked category as active (expand it)
+    }
+  };
+  
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true); // Setting loading to true when starting the submit operation.
@@ -50,6 +66,7 @@ const QuizPage = () => {
       });
       if (response.status === 200) {
         console.log('Data sent successfully:', response.data);
+        navigate('/result');
       } else {
         console.log('Server returned a non-200 status:', response.status);
       }
@@ -60,26 +77,35 @@ const QuizPage = () => {
   };
 
   return (
-    <div style={{ background: 'lightblue', padding: '20px' }}>
-      <h1 style={{ color: 'blue' }}>Quiz</h1>
-      <form onSubmit={handleSubmit} style={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px' }}>
+    <div className={'container'}>
+      <h1 className={'quizTitle'}>Quiz</h1>
+      <form onSubmit={handleSubmit} className={'formContainer'}>
         {Object.keys(inputs).map((category) => (
-          <div key={category}>
-            <h2 style={{ color: 'blue' }}>{category}</h2>
-            {inputs[category].map((question: string) => (
-              <div key={question}>
-                <label style={{ color: 'blue' }}>{question}</label>
-                <input
-                  type="text"
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => handleInputChange(category, question, e.target.value)}
-                  style={{ width: '100%', padding: '10px', borderRadius: '5px', border: '1px solid blue' }}
-                  value={answers[category][question] || ''}
-                />
+          <div key={category} className={'collapsibleContainer'}>
+            <div
+              className={'collapsibleHeader'}
+              onClick={() => handleToggleCategory(category)}
+            >
+              <h2 className={'categoryTitle'}>{category}</h2>
+            </div>
+            {activeCategory === category && (
+              <div className={'collapsibleContent'}>
+                {inputs[category].map((question: string) => (
+                  <div key={question}>
+                    <label className={'questionLabel'}>{question}</label>
+                    <input
+                      type="text"
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => handleInputChange(category, question, e.target.value)}
+                      className={'inputField'}
+                      value={answers[category][question] || ''}
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
+            )}
           </div>
         ))}
-        <button type="submit" style={{ background: 'blue', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+        <button type="submit" className={'submitButton'}>
           {loading ? 'Submitting...' : 'Submit'}
         </button>
       </form>

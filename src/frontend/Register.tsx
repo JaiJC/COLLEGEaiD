@@ -1,19 +1,13 @@
-import React, { useState } from "react";
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
-import '/Users/rohansonthalia/Documents/AIvisor/src/frontend/LoginPage.css'
-
-
-
-import aiviLogo from '/Users/rohansonthalia/Documents/AIvisor/src/frontend/aivi.png'; // Import the Aivi logo
+import axios from 'axios';
+import '/Users/harish/AIvisor/src/frontend/LoginPage.css';
 
 export default function Register() {
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // Declare error state with an initial empty string
+  const [error, setError] = useState("");
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -21,8 +15,11 @@ export default function Register() {
 
   function handleSubmit(event: any) {
     event.preventDefault();
+    if (!validateForm()) {
+      setError("Please fill out all fields");
+      return;
+    }
 
-    // Define the data you want to send
     const data = {
       email: email,
       password: password,
@@ -34,67 +31,63 @@ export default function Register() {
       },
     })
       .then(response => {
-        console.log('Full Response:', response); // Log the entire response
         if (response.status === 200) {
-          console.log('Response Data:', response.data);
           navigate('/login');
-        } else if (response.status === 400) {
-          // User already exists
-          setError("User already exists. Please use a different email.");
         } else {
-          // Handle other errors
           setError("An error occurred. Please try again.");
         }
       })
       .catch(error => {
-        console.error('Error:', error);
         setError("An error occurred. Please try again.");
       });
   }
 
-  // Function to clear the error message
   function clearError() {
     setError("");
   }
 
   return (
-    <div className="Register">
-      <div className="logoContainer">
-        <img src={aiviLogo} alt="Aivi Logo" className="aivi-logo" />
-      </div>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            autoFocus
+    <div className="container">
+      <div className="heading">Sign Up for an Account</div>
+      {error && (
+        <div className="error-message">
+          {error}
+          <button onClick={clearError}>X</button>
+        </div>
+      )}
+      <form onSubmit={handleSubmit} className="form">
+        <div className="input-field">
+          <input
+            id="email"
+            name="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-        </Form.Group>
-  
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
+          <label htmlFor="email">Email</label>
+        </div>
+        <div className="input-field">
+          <input
+            id="password"
+            name="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </Form.Group>
-  
-        <Button size="lg" type="submit" disabled={!validateForm()}>
-          Register
-        </Button>
-      </Form>
-  
-      {error && (
-        <div style={{ color: 'red', marginTop: '20px' }}>
-          {error}
-          <button onClick={clearError} style={{ marginLeft: '10px' }}>
-            Clear
-          </button>
+          <label htmlFor="password">Password</label>
         </div>
-      )}
+        <div className="btn-container">
+          <button type="submit" className="btn">
+            Submit
+          </button>
+          <div className="acc-text">
+            Already have an account?{' '}
+            <span onClick={() => navigate('/login')} style={{ color: '#0000ff', cursor: 'pointer' }}>
+              Sign In
+            </span>
+          </div>
+        </div>
+      </form>
     </div>
   );
-} 
+}
