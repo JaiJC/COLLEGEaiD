@@ -58,52 +58,43 @@ export default function Register() {
   }
 
   return (
-<div className="Register">
-
-<Form onSubmit={handleSubmit}>
-
-  <Form.Group controlId="email">
-
-    <Form.Label>Email</Form.Label>
-
-    <Form.Control
-
-      autoFocus
-
-      type="email"
-
-      value={email}
-
-      onChange={(e) => setEmail(e.target.value)}
-
-    />
-
-  </Form.Group>
-
-  <Form.Group controlId="password">
-
-    <Form.Label>Password</Form.Label>
-
-    <Form.Control
-
-      type="password"
-
-      value={password}
-
-      onChange={(e) => setPassword(e.target.value)}
-
-    />
-
-  </Form.Group>
-
-  <Button size="lg" type="submit" disabled={!validateForm()}>
-
-    Register
-
-  </Button>
-
-</Form>
-
-</div>
+    <div className="Register">
+      <div className="logoContainer">
+        <img src={aiviLogo} alt="Aivi Logo" className="aivi-logo" />
+      </div>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="email">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            autoFocus
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Form.Group>
+  
+        <Form.Group controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Group>
+  
+        <Button size="lg" type="submit" disabled={!validateForm()}>
+          Register
+        </Button>
+      </Form>
+  
+      {error && (
+        <div style={{ color: 'red', marginTop: '20px' }}>
+          {error}
+          <button onClick={clearError} style={{ marginLeft: '10px' }}>
+            Clear
+          </button>
+        </div>
+      )}
+    </div>
   );
-}
+} 

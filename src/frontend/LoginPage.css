@@ -215,9 +215,50 @@
   font-size: 0.75rem;
 }
 
+.collegeAidContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Allows absolute positioning within this container */
+  padding: 40px;
+  background-color: #FFFFFF; /* White background color */
+}
 
+.buttonsContainer {
+  position: absolute; /* Absolute positioning */
+  top: 10px; /* Distance from the top */
+  right: 10px; /* Distance from the right */
+  display: flex;
+  gap: 10px;
+}
 
-  
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px; /* Rounded corners */
+  font-weight: bold;
+  cursor: pointer;
+}
 
-  
-  
+.loginBtn {
+  background-color: #000000; /* Blue background color */
+  color: #FFFFFF; /* White text color */
+}
+
+.registerBtn {
+  background-color: #1e9bd0; /* Green background color */
+  color: #FFFFFF; /* White text color */
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  width: 100%;
+}
+
+.college-logo {
+  max-width: 80%;
+  height: auto;
+}
