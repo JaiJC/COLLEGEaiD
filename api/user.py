@@ -7,9 +7,14 @@ from pymongo.server_api import ServerApi
 from urllib.parse import quote_plus
 import certifi
 import json
-from bson import json_util
+import logging
+from waitress import serve
+from flask_cors import CORS
 
 app = Flask(__name__)
+logging.basicConfig(level=logging.DEBUG)
+CORS(app)
+logging.getLogger('flask_cors').level = logging.DEBUG
 
 username = os.getenv("MONGO_USERNAME")
 password = os.getenv("MONGO_PASSWORD")
@@ -55,17 +60,17 @@ def form1():
 
 @app.route('/form2', methods=['POST'])
 def form2():
-    collection.insert_one(request.form.to_dict())
+    collection.insert_one(request.get_json(force=True))
     return jsonify({'message': 'Form 2 data stored successfully'}), 200
 
 @app.route('/form3', methods=['POST'])
 def form3():
-    collection.insert_one(request.form.to_dict())
+    collection.insert_one(request.get_json(force=True))
     return jsonify({'message': 'Form 3 data stored successfully'}), 200
 
 @app.route('/form4', methods=['POST'])
 def form4():
-    collection.insert_one(request.form.to_dict())
+    collection.insert_one(request.get_json(force=True))
     return jsonify({'message': 'Form 4 data stored successfully'}), 200
 
 @app.route('/read-mongo', methods=['GET'])
@@ -77,6 +82,11 @@ def read_mongodb():
         dfs |= file
 
     return jsonify(dfs), 200
+
+@app.route('/clear', methods=['DELETE'])
+def clear_mongodb():
+    collection.delete_many({})
+    return jsonify({'message': 'Collection cleared successfully'}), 204
 
 @app.route('/openai', methods=['POST'])
 def gpt_call():
@@ -93,4 +103,4 @@ def gpt_call():
     return jsonify({'output': output}), 200
 
 if __name__ == '__main__':
-    app.run(port=8000,debug=True)
+    serve(app, host="0.0.0.0", port=8080)
