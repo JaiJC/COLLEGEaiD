@@ -1,6 +1,6 @@
 # COLLEGEaiD :robot::mortar_board:
 
-<img src="https://jenkins.io/sites/default/files/jenkins_logo.png"/>
+<img src="[https://jenkins.io/sites/default/files/jenkins_logo.png](https://github.com/rohan-sonthalia/AIvisor/blob/rohan/backend/Logo5.png)"/>
 
 **Your Personal AI College Counsellor**
 
