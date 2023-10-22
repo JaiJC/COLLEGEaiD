@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "./LoginPage.css";
-import logo from '/Users/harish/AIvisor/src/frontend/collegeAid.png';
+import logo from '//Users/rohansonthalia/Documents/AIvisor/src/frontend/collegeAid.png';
 
 export default function Login() {
   const navigate = useNavigate(); // Get the navigate function
@@ -26,7 +26,7 @@ export default function Login() {
       password: password,
     };
 
-    axios.post('http://127.0.0.1:8000/login', data, { // Changed URL to /login
+    axios.post('http://0.0.0.0:8080/login', data, { // Changed URL to /login
       headers: {
         'Content-Type': 'application/json',
       },

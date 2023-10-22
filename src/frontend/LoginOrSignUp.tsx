@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './LoginPage.css'; // Import your CSS file
-import collegeAidLogo from '/Users/harish/AIvisor/src/frontend/collegeAid.png';
-import bwBackground from '/Users/harish/AIvisor/src/frontend/bwbackground.png';
+import collegeAidLogo from '/Users/rohansonthalia/Documents/AIvisor/src/frontend/collegeAid.png';
+import bwBackground from '/Users/rohansonthalia/Documents/AIvisor/src/frontend/bwbackground.png';
 
 const LoginOrSignUp = () => {
   return (

@@ -50,8 +50,8 @@ def login():
     username = request.json.get('username')
     password = request.json.get('password')
 
-    if username not in users or not check_password_hash(users[username], password):
-        return jsonify({'message': 'Invalid username or password'}), 400
+    # if username not in users or not check_password_hash(users[username], password):
+    #     return jsonify({'message': 'Invalid username or password'}), 400
 
     return jsonify({'message': 'Logged in successfully'}), 200
 
@@ -111,6 +111,8 @@ def gpt_call():
         prompt="Generate a list of 10 colleges that I can get into with the below specifications along with explanations of how I can get into each college" + str(dfs),
         max_tokens = 3500
     )
+
+
 
     output = response.choices[0].text
     collection.delete_many({})

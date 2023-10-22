@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
-import '/Users/harish/AIvisor/src/frontend/LoginPage.css';
+import '/Users/rohansonthalia/Documents/AIvisor/src/frontend/LoginPage.css';
 
 
 interface InputCategories {
