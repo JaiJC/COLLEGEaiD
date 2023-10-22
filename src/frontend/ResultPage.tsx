@@ -7,12 +7,12 @@ export default function ResultPage() {
   const [data, setData] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState('')
-  
 
 
   useEffect(() => {
     axios.get('http://0.0.0.0:8080/openai')
     .then((response) => {
+
       setData(response.data.output)
       setLoading("false")
     })
@@ -25,7 +25,7 @@ export default function ResultPage() {
 
   return (
     <div className = "result-container">
-      <h1> Response </h1>
+      <h1>Result</h1>
       <div dangerouslySetInnerHTML={{ __html: data}} />
     </div>
   );
