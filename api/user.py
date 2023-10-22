@@ -41,7 +41,7 @@ def register():
         return jsonify({'message': 'User already exists'}), 400
 
     users[username] = generate_password_hash(password)
-    return jsonify({'message': 'User created successfully'}), 201
+    return jsonify({'message': 'User created successfully'}), 200
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -49,7 +49,7 @@ def login():
     password = request.json.get('password')
 
     if username not in users or not check_password_hash(users[username], password):
-        return jsonify({'message': 'Invalid username or password'}), 401
+        return jsonify({'message': 'Invalid username or password'}), 400
 
     return jsonify({'message': 'Logged in successfully'}), 200
 
