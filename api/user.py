@@ -5,6 +5,7 @@ import os
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from urllib.parse import quote_plus
+import certifi
 import json
 from bson import json_util
 
@@ -18,7 +19,7 @@ password = quote_plus(password)
 
 connection_string = f"mongodb+srv://{username}:{password}@hh23.oxb5jub.mongodb.net/?retryWrites=true&w=majority"
 
-client = MongoClient(connection_string, server_api=ServerApi('1'))
+client = MongoClient(connection_string, tlsCAFile=certifi.where(), tlsAllowInvalidCertificates=True)
 
 db = client['hh23']
 collection = db['AIvisor']
@@ -49,7 +50,7 @@ def login():
 
 @app.route('/form1', methods=['POST'])
 def form1():
-    collection.insert_one(request.form.to_dict())
+    collection.insert_one(request.get_json(force=True))
     return jsonify({'message': 'Form 1 data stored successfully'}), 200
 
 @app.route('/form2', methods=['POST'])
